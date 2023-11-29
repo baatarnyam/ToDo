@@ -1,0 +1,1 @@
+const addCard = document.getElementsByClassName("add")

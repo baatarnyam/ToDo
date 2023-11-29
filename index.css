@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://www.wallpapertip.com/wmimgs/122-1224301_hq-field-wallpapers-slavkov-forest.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout {
+  width: fit-content;
+  height: fit-content;
+  /* border: solid 1px red; */
+  display: flex;
+  gap: 20px;
+}
+
+#card {
+  width: 300px;
+  height: 120px;
+  background-color: rgba(235,236,240,255);
+  border: solid 1px rgba(235,236,240,255);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.text {
+  font-size: 22px;
+  font-weight: bold;
+}
+.add {
+  width: 100%;
+  height: 30px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+.add:hover {
+    background-color: rgb(220, 220, 220);
+    cursor: pointer;
+    border-radius: 5px;
+}
+.counter {
+  color: rgba(159,160,163,255);
+  font-weight: bold;
+  font-size: 18px;
+}
