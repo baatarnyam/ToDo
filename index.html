@@ -1,44 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./index.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
     <div class="container">
         <div class="layout">
             <div id="card">
-                <div class="cardInner">
-                    <span class="text">To Do</span>
-                    <span class="counter">0</span>
+              <div class="cardInner">
+                <span class="text">To Do</span>
+                <span class="counter">0</span>
+              </div>
+
+              <div id="creating">
+                <div class="creatingItem1">
+                    <div class="creatingItem1Left">
+                        <div class="check">c</div>
+                        <div class="creatingItem1Text">Todo</div>
+                    </div>
+                    <div class="close">x</div>
                 </div>
-                <div class="add">+ Add card</div>
+                <div class="creatingItem2">Lorem, ipsum dolor.</div>
+                <div class="creatingItem3">High</div>
+              </div>
+
+              <div class="cardAdd">
+                <div class="plus">+</div>
+                <div class="add">Add card</div>
+              </div>
             </div>
             <div id="card">
-                <div class="cardInner">
-                    <span class="text">In progress</span>
-                    <span class="counter">0</span>
-                </div>
-                <div class="add">+ Add card</div>
+              <div class="cardInner">
+                <span class="text">In progress</span>
+                <span class="counter">0</span>
+              </div>
+              <div class="cardAdd" >
+                <div class="plus">+</div>
+                <div class="add">Add card</div>
+              </div>
             </div>
             <div id="card">
-                <div class="cardInner">
-                    <span class="text">Stuck</span>
-                    <span class="counter">0</span>
-                </div>
-                <div class="add">+ Add card</div>
+              <div class="cardInner">
+                <span class="text">Stuck</span>
+                <span class="counter">0</span>
+              </div>
+              <div class="cardAdd" >
+                <div class="plus">+</div>
+                <div class="add">Add card</div>
+              </div>
             </div>
             <div id="card">
-                <div class="cardInner">
-                    <span class="text">Done</span>
-                    <span class="counter">0</span>
-                </div>
-                <div class="add">+ Add card</div>
+              <div class="cardInner">
+                <span class="text">Done</span>
+                <span class="counter">0</span>
+              </div>
+              <div class="cardAdd" >
+                <div class="plus">+</div>
+                <div class="add">Add card</div>
+              </div>
             </div>
         </div>
+
+        <div class="opacity">
+            <div class="modal">
+                <p class="modalTask">Add Task</p>
+                <div class="taskItem1">
+                  <p class="modalTitle">Title</p>
+                  <input type="text" class="titleInput" id="modalTitle">
+                </div>
+        
+                <div class="taskItem2">
+                  <p class="modalTitle">Description</p>
+                  <input type="text" class="desInput" id="modalDescription">
+                </div>
+        
+                <div class="taskItem2">
+                  <p class="modalTitle">Status</p>
+                  <select name="" id="select">
+                      <option value="">To Do</option>
+                      <option value="">In progress</option>
+                      <option value="">Stuck</option>
+                      <option value="">Done</option>
+        
+                  </select>
+                </div>
+        
+                <div class="taskItem2">
+                  <p class="modalTitle">Priority</p>
+                  <select name="" id="select">
+                      <option value="">High</option>
+                      <option value="">Medium</option>
+                      <option value="">Low</option>
+                  </select>
+                </div>
+                <div id="addButton">Add Task</div>
+              </div>
+          </div>
+
+
     </div>
-</body>
-<script src="./index.js"></script>
+  </body>
+  <script src="./index.js"></script>
 </html>
