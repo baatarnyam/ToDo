@@ -13,13 +13,10 @@ const addButton = document.getElementById("addButton");
 
 Array.prototype.forEach.call(cardAdd, (el) => {
     el.addEventListener("click", () => {
-        modalBlock();
+        opacity.style.display = "block";
       });
 })
 
-const modalBlock = () => {
-  opacity.style.display = "block";
-};
 
 opacity.addEventListener("click", function (event) {
   if (event.target == opacity) {
@@ -50,8 +47,6 @@ addButton.addEventListener("click", (event) => {
   console.log(state);
 
   clear()
-  // object.title = "";
-  // object.description = "";
 }); 
 
 const clear = () => {

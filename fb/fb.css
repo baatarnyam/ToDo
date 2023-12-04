@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+
+}
+
+#names {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+.name {
+    width: 160px;
+    height: 30px;
+}
+
+#email {
+    margin-top: 20px;
+    width: 330px;
+    height: 30px;
+}
+
+#password {
+    margin-top: 20px;
+    width: 330px;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+.birth {
+    max-width: 50px;
+    /* min-width: 50px; */
+    height: 30px;
+    margin-top: 10px;
+}
+
+#mounth {
+    max-width: 45px;
+    min-width: 40px;
+}
+#year {
+    max-width: 55px;
+    min-width: 40px;
+}
+
+#checkbox {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+.check {
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+#createBtn {
+    width: 230px;
+    height: 30px;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+}
