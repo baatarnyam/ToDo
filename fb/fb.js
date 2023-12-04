@@ -38,9 +38,9 @@ button.addEventListener("click", () => {
 
 const cardComponent = (props) => {
   const { FirstName, LastName, emailOrPhoneNumber, birth, gender } = props;
-  return `<div border: solid 1px blue>
+  return `<div style="border: solid 1px blue;">
     <div> ${FirstName} </div>
-    <div>${LastName} /div>
+    <div>${LastName}</div>
     <div>${emailOrPhoneNumber} </div>
     <div>${birth} </div>
     <div>${gender}</div>
