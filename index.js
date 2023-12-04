@@ -7,7 +7,7 @@ const modalTitle = document.getElementById("modalTitle");
 const modalDescription = document.getElementById("modalDescription");
 const statusSelect= document.getElementById("modalDescription");
 const prioritySelect= document.getElementById("modalDescription");
-// const creating = document.getElementById("creating");
+const creating = document.getElementById("creating");
 const addButton = document.getElementById("addButton");
 
 
@@ -15,7 +15,7 @@ Array.prototype.forEach.call(cardAdd, (el) => {
     el.addEventListener("click", () => {
         opacity.style.display = "block";
       });
-})
+});
 
 
 opacity.addEventListener("click", function (event) {
@@ -33,7 +33,6 @@ const object = {
 }
 
 
-
 addButton.addEventListener("click", (event) => {
   if (event.target != opacity) {
     opacity.style.display = "none";
@@ -46,7 +45,10 @@ addButton.addEventListener("click", (event) => {
   state.push(object)
   console.log(state);
 
-  clear()
+  clear();
+
+  const jsonArray = JSON.stringify(state);
+  localStorage.setItem("ToDo", jsonArray);
 }); 
 
 const clear = () => {

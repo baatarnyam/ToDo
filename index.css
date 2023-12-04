@@ -116,7 +116,7 @@
   cursor: pointer;
 }
 
-/* #creating {
+#toDo {
   background-color: #fff;
   width: 100%;
   height: fit-content;
@@ -128,7 +128,8 @@
   margin-top: 15px;
   margin-bottom: 15px;
 }
-.creatingItem1 {
+
+.toDoTitle {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -136,24 +137,48 @@
   height: 30px;
   border: solid 1px red;
 }
-.creatingItem1Left {
+.toDoTitleText {
+  font-size: 18px;
+  font-weight: bold;
+}
+.toDoTitleLeft {
+  width: fit-content;
+  height: fit-content;
   display: flex;
-  gap: 10px;
+  gap: 5px;
 }
-.creatingItem2  {
-  margin-left: 20px;
-}
-.creatingItem3  {
-  margin-left: 20px;
-}
-
-.close {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #fff;
-  border: solid 1px rgb(204, 204, 204);
+.toDoTitleLeftIcon {
+  width: fit-content;
+  height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
-} */
+}
+
+.toDoTitleRight {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toDoDescription {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+  /* min-height: 40px; */
+  border: solid 1px red;
+}
+.toDoDescriptionIcon {
+  width: 20px;
+  height: 20px;
+}
+.toDoDescirptionText {
+  margin-left: 25px;
+}
+
+.toDoPriority  {
+  margin-left: 25px;
+}
