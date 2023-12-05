@@ -80,7 +80,7 @@ const cardComponent = (props) => {
   </div>
   </div>
 
-  <div>${status} </div>
+  <div>${ status && true} </div>
   <div class="toDoPriority">${priority}</div>
   </div>`;
 
@@ -95,9 +95,9 @@ const render = () => {
   let jsonText = JSON.parse(localStorage.getItem("ToDo"));
   jsonText.forEach((el) => {
     const result = cardComponent(el);
-    // toDo.innerHTML += result;
+    // toDo.innerHTML = toDo.innerHTML + result;
 
-    switch (el.status ) {
+    switch (el.status === true ) {
       case toDo:
         toDo.innerHTML += result;
         break;
