@@ -6,39 +6,36 @@
     <title>Document</title>
     <link rel="stylesheet" href="./index.css" />
 
-    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
   </head>
   <body>
     <div class="container">
       <div class="layout">
+        
         <div id="card">
           <div class="cardInner">
             <span class="text">To Do</span>
             <span class="counter">0</span>
           </div>
 
-          <div id="toDo">
-            <div class="toDoTitle">
-              <div class="toDoTitleLeft">
-                <div class="toDoTitleLeftIcon"><i class='far fa-check-circle'>&#xf058;</i></div>
-                <div class="toDoTitleText">Todo</div>
-              </div>
-
-              <div class="toDoTitleRight">
-                <i class="material-icons" style="font-size: 20px;">&#xe888;</i>
-              </div>
-            </div>
-                
-            <div class="toDoDescription">
-              <div class="toDoDescirptionText">Lorem, ipsum dolor.</div>
-              <div class="toDoDescriptionIcon">
-                <i class='far fa-edit'>&#xf044</i>
-              </div>
-            </div>
-            <div class="toDoPriority">High</div>
-          </div>
+          <div id="toDo"></div>
 
           <div class="cardAdd">
             <div class="plus">+</div>
@@ -51,7 +48,10 @@
             <span class="text">In progress</span>
             <span class="counter">0</span>
           </div>
-          <div class="cardAdd" >
+
+          <div id="inProgress"></div>
+
+          <div class="cardAdd">
             <div class="plus">+</div>
             <div class="add">Add card</div>
           </div>
@@ -62,7 +62,10 @@
             <span class="text">Stuck</span>
             <span class="counter">0</span>
           </div>
-          <div class="cardAdd" >
+
+          <div id="stuck"></div>
+
+          <div class="cardAdd">
             <div class="plus">+</div>
             <div class="add">Add card</div>
           </div>
@@ -74,7 +77,9 @@
             <span class="counter">0</span>
           </div>
 
-          <div class="cardAdd" >
+          <div id="done"></div>
+
+          <div class="cardAdd">
             <div class="plus">+</div>
             <div class="add">Add card</div>
           </div>
@@ -86,35 +91,40 @@
           <p class="modalTask">Add Task</p>
           <div class="taskItem1">
             <p class="modalTitle">Title</p>
-            <input type="text" class="titleInput" id="modalTitle">
+            <input type="text" class="titleInput" id="modalTitle" />
           </div>
-        
+
           <div class="taskItem2">
             <p class="modalTitle">Description</p>
-            <textarea name="" id="modalDescription" cols="30" rows="10" class="desInput"></textarea>
+            <textarea
+              name=""
+              id="modalDescription"
+              cols="30"
+              rows="10"
+              class="desInput"
+            ></textarea>
           </div>
-        
+
           <div class="taskItem2">
             <p class="modalTitle">Status</p>
             <select name="" id="statusSelect" class="select">
               <option value="todo">To Do</option>
               <option value="progress">In progress</option>
-              <option value="stuck">Stuck</option>
-              <option value="done">Done</option>
+              <option value="stuck" id="stuck">Stuck</option>
+              <option value="done" id="done">Done</option>
             </select>
           </div>
-        
+
           <div class="taskItem2">
             <p class="modalTitle">Priority</p>
             <select name="" id="prioritySelect" class="select">
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
             </select>
           </div>
 
-           <div id="addButton">Add Task</div>
-
+          <div id="addButton">Add Task</div>
         </div>
       </div>
     </div>

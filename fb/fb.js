@@ -49,9 +49,9 @@ const cardComponent = (props) => {
 
 const render = () => {
   const render = document.getElementsByClassName("render")[0];
-  let text = JSON.parse(localStorage.getItem("bn"));
+  let josnText = JSON.parse(localStorage.getItem("bn"));
 
-  const result = cardComponent(text);
+  const result = cardComponent(josnText);
   render.innerHTML = result;
 };
 render();

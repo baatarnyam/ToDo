@@ -116,7 +116,7 @@
   cursor: pointer;
 }
 
-#toDo {
+#toDoList {
   background-color: #fff;
   width: 100%;
   height: fit-content;
@@ -135,7 +135,7 @@
   align-items: center;
   width: 100%;
   height: 30px;
-  border: solid 1px red;
+  /* border: solid 1px red; */
 }
 .toDoTitleText {
   font-size: 18px;
@@ -148,19 +148,26 @@
   gap: 5px;
 }
 .toDoTitleLeftIcon {
-  width: fit-content;
-  height: fit-content;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  border: solid 1.5px grey;
+  /* background-color: black; */
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .toDoTitleRight {
-  width: fit-content;
-  height: fit-content;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  border: solid 1.5px grey;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .toDoDescription {
@@ -169,11 +176,17 @@
   width: 100%;
   height: fit-content;
   /* min-height: 40px; */
-  border: solid 1px red;
+  /* border: solid 1px red; */
 }
 .toDoDescriptionIcon {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: solid 1.5px grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 .toDoDescirptionText {
   margin-left: 25px;
@@ -181,4 +194,11 @@
 
 .toDoPriority  {
   margin-left: 25px;
+  width: 50px;
+  height: 25px;
+  border: solid 1px grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
 }
