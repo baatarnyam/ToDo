@@ -1,10 +1,15 @@
+const container = document.getElementsByClassName("container")[0];
 const cardAdd = document.getElementsByClassName("cardAdd");
+
 const counter = document.getElementsByClassName("counter")[0];
 const opacity = document.getElementsByClassName("opacity")[0];
-const container = document.getElementsByClassName("container")[0];
+
 const modalTitle = document.getElementById("modalTitle");
 const modalDescription = document.getElementById("modalDescription");
 const addButton = document.getElementById("addButton");
+
+const toDoTitleRight = document.getElementsByClassName("toDoTitleRight")[0];
+const toDoList = document.getElementsByClassName("toDoList")[0];
 
 Array.prototype.forEach.call(cardAdd, (el) => {
   el.addEventListener("click", () => {
@@ -36,12 +41,13 @@ addButton.addEventListener("click", (event) => {
   object.status = statusSelect.value;
   object.priority = prioritySelect.value;
   state.push(object);
-  console.log(state);
-
+  // console.log(state);
   clear();
 
   const jsonArray = JSON.stringify(state);
   localStorage.setItem("ToDo", jsonArray);
+
+  render();
 });
 
 const clear = () => {
@@ -55,6 +61,7 @@ const clear = () => {
 {
   /* <i style="font-size:24px;" class="fa">&#xf058;</i> */
 }
+{/* <div>${ status && ""} </div> */}
 
 
 const cardComponent = (props) => {
@@ -80,7 +87,7 @@ const cardComponent = (props) => {
   </div>
   </div>
 
-  <div>${ status && true} </div>
+
   <div class="toDoPriority">${priority}</div>
   </div>`;
 
@@ -94,21 +101,28 @@ const render = () => {
 
   let jsonText = JSON.parse(localStorage.getItem("ToDo"));
   jsonText.forEach((el) => {
-    const result = cardComponent(el);
-    // toDo.innerHTML = toDo.innerHTML + result;
 
-    switch (el.status === true ) {
-      case toDo:
+    const result = cardComponent(el);
+    // toDo.innerHTML += result;
+
+    switch (el.status) {
+      case "toDo":
         toDo.innerHTML += result;
         break;
-      case inProgress:
+      case "inProgress":
         inProgress.innerHTML += result;
+        break;
 
-      case stuck:
+      case "stuck":
         stuck.innerHTML += result;
+        break;
 
-      case done:
+      case "done":
         done.innerHTML += result;
+
+        break;
+      default:
+        alert("status aa songono uu!")
         break;
     }
 
@@ -116,3 +130,8 @@ const render = () => {
   });
 };
 render();
+
+
+// toDoTitleRight.addEventListener("click", () => {
+//   toDoList.style.display = "none"
+// })
