@@ -24,7 +24,7 @@
   position: relative;
 }
 
-#card {
+.cards {
   width: 300px;
   min-height: 120px;
   height: fit-content;
