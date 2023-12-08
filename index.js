@@ -9,7 +9,7 @@ const modalDescription = document.getElementById("modalDescription");
 const addButton = document.getElementById("addButton");
 
 const toDoTitleRight = document.getElementsByClassName("toDoTitleRight")[0];
-const toDoList = document.getElementsByClassName("toDoList")[0];
+// const toDoList = document.getElementsByClassName("toDoList")[0];
 
 Array.prototype.forEach.call(cardAdd, (el) => {
   el.addEventListener("click", () => {
@@ -34,7 +34,11 @@ let object = {
   priority: "Low",
 };
 
+let uniq = 'id' + (new Date()).getTime();
+
+
 const setData = (obj) => {
+  obj.id = uniq;
   state.push({ ...obj });
   localStorage.setItem("ToDo", JSON.stringify(state));
   render();
@@ -76,8 +80,16 @@ const clear = () => {
 }
 
 const cardComponent = (props) => {
-  const { title, description, status, priority } = props;
-  return `<div id="toDoList"   draggable="true" class="innerCard">
+
+  // const uniqId = () => {
+  //   const uniq = "id" + new Date().getTime();
+  //   return uniq;
+  // };
+  
+  // console.log(uniq);
+
+  const { title, description, id, status, priority } = props;
+  return `<div id="${id}"   draggable="true" class="${status} toDoList innerCard">
   <div class="toDoTitle">
   <div class="toDoTitleLeft">
     <div class="toDoTitleLeftIcon">
@@ -97,7 +109,6 @@ const cardComponent = (props) => {
     <i style="font-size: 13px; font-weight: bold;" class="fa">&#xf044;</i>
   </div>
   </div>
-
 
   <div class="toDoPriority">${priority}</div>
   </div>`;
@@ -151,29 +162,32 @@ const render = () => {
 };
 render();
 
+
 const dragToDos = document.querySelectorAll(".dragToDos");
-// const dropCard = document.querySelectorAll(".cards");
+const dropCard = document.querySelectorAll(".cards");
 const innerCard = document.querySelectorAll(".innerCard");
 
 let temp;
 
 innerCard.forEach((el) => {
   el.addEventListener("dragstart", (event) => {
-    event.dataTransfer.setData("dragged", event.target.id);
+    event.dataTransfer.setData("todos", event.target.id);
     // console.log(event);
   });
 });
 
-dragToDos.forEach((el) => {
+dropCard.forEach((el) => {
   el.addEventListener("dragover", (event) => {
     event.preventDefault();
   });
   el.addEventListener("drop", (event) => {
-    temp = event.dataTransfer.getData("dragged");
-    const dragDrop = document.getElementById(temp);
-    el.appendChild(dragDrop)
+    temp = event.dataTransfer.getData("todos");
+    const dragged = document.getElementById(temp);
+    el.appendChild(dragged);
   });
 });
+
+
 
 // const mapDrop = dragToDos.map((el) => {
 //   el.addEventListener("dragover", (event) => {

@@ -116,7 +116,7 @@
   cursor: pointer;
 }
 
-#toDoList {
+.toDoList {
   background-color: #fff;
   width: 100%;
   height: fit-content;
