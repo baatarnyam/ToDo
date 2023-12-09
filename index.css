@@ -147,7 +147,7 @@
   display: flex;
   gap: 5px;
 }
-.toDoTitleLeftIcon {
+#toDoTitleLeftIcon {
   width: 21px;
   height: 21px;
   border-radius: 50%;

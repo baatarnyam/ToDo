@@ -34,11 +34,10 @@ let object = {
   priority: "Low",
 };
 
-let uniq = 'id' + (new Date()).getTime();
 
 
 const setData = (obj) => {
-  obj.id = uniq;
+  // obj.id = uniq;
   state.push({ ...obj });
   localStorage.setItem("ToDo", JSON.stringify(state));
   render();
@@ -81,18 +80,14 @@ const clear = () => {
 
 const cardComponent = (props) => {
 
-  // const uniqId = () => {
-  //   const uniq = "id" + new Date().getTime();
-  //   return uniq;
-  // };
-  
-  // console.log(uniq);
+  let uniq = 'id' + (new Date()).getTime();
 
   const { title, description, id, status, priority } = props;
-  return `<div id="${id}"   draggable="true" class="${status} toDoList innerCard">
+  console.log(uniq);
+  return `<div id="${uniq}"   draggable="true" class="${status} toDoList innerCard">
   <div class="toDoTitle">
   <div class="toDoTitleLeft">
-    <div class="toDoTitleLeftIcon">
+    <div id="toDoTitleLeftIcon">
       <i class="material-icons"  style="font-size: 14px;">&#xe5ca;</i>
     </div>
     <div class="toDoTitleText">${title}</div>
@@ -119,6 +114,7 @@ const render = () => {
   const inProgress = document.getElementById("inProgress");
   const stuck = document.getElementById("stuck");
   const done = document.getElementById("done");
+
 
   toDo.innerHTML = "";
   inProgress.innerHTML = "";
@@ -154,6 +150,17 @@ const render = () => {
       case "done":
         done.innerHTML += result;
 
+        const toDoTitleLeftIcon = document.getElementById("toDoTitleLeftIcon");
+        // const done = document.getElementById("done");
+        // done.forEach( (el) => {
+        //   el.addEventListener("change", () => {
+        //     toDoTitleLeftIcon.style.color= "#fff",
+        //     toDoTitleLeftIcon.style.backgroundColor= "black"
+        //   });
+        // });
+        toDoTitleLeftIcon.style.color= "#fff";
+        toDoTitleLeftIcon.style.backgroundColor= "black"
+
         // count4++;
         // card4Count.innerHTML = count4;
         break;
@@ -164,7 +171,7 @@ render();
 
 
 const dragToDos = document.querySelectorAll(".dragToDos");
-const dropCard = document.querySelectorAll(".cards");
+// const dropCard = document.querySelectorAll(".cards");
 const innerCard = document.querySelectorAll(".innerCard");
 
 let temp;
@@ -176,7 +183,7 @@ innerCard.forEach((el) => {
   });
 });
 
-dropCard.forEach((el) => {
+dragToDos.forEach((el) => {
   el.addEventListener("dragover", (event) => {
     event.preventDefault();
   });
@@ -184,6 +191,7 @@ dropCard.forEach((el) => {
     temp = event.dataTransfer.getData("todos");
     const dragged = document.getElementById(temp);
     el.appendChild(dragged);
+    console.log(temp);
   });
 });
 
