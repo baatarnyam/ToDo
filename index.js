@@ -34,10 +34,9 @@ let object = {
   priority: "Low",
 };
 
-
-
 const setData = (obj) => {
-  // obj.id = uniq;
+  let uniq = "id" + new Date().getTime();
+  obj.id = uniq;
   state.push({ ...obj });
   localStorage.setItem("ToDo", JSON.stringify(state));
   render();
@@ -79,12 +78,9 @@ const clear = () => {
 }
 
 const cardComponent = (props) => {
-
-  let uniq = 'id' + (new Date()).getTime();
-
   const { title, description, id, status, priority } = props;
-  console.log(uniq);
-  return `<div id="${uniq}"   draggable="true" class="${status} toDoList innerCard">
+
+  return `<div id="${id}"  draggable="true" class="${status} toDoList">
   <div class="toDoTitle">
   <div class="toDoTitleLeft">
     <div id="toDoTitleLeftIcon">
@@ -115,7 +111,6 @@ const render = () => {
   const stuck = document.getElementById("stuck");
   const done = document.getElementById("done");
 
-
   toDo.innerHTML = "";
   inProgress.innerHTML = "";
   stuck.innerHTML = "";
@@ -129,37 +124,35 @@ const render = () => {
     switch (el.status) {
       case "toDo":
         toDo.innerHTML += result;
-
-        // count1++;
-        // card1Count.innerHTML = count1;
         break;
       case "inProgress":
         inProgress.innerHTML += result;
 
-        // count2++;
-        // card2Count.innerHTML = count2;
         break;
 
       case "stuck":
         stuck.innerHTML += result;
-
-        // count3++;
-        // card3Count.innerHTML = count3;
         break;
 
       case "done":
         done.innerHTML += result;
 
         const toDoTitleLeftIcon = document.getElementById("toDoTitleLeftIcon");
-        // const done = document.getElementById("done");
-        // done.forEach( (el) => {
+  
+          toDoTitleLeftIcon.style.color= "#fff";
+          toDoTitleLeftIcon.style.backgroundColor= "black"
+
+        // const card4 = document.getElementById("card4");
+        // card4.addEventListener("drop", () => {
+        //   toDoTitleLeftIcon.style.color= "#fff";
+        //   toDoTitleLeftIcon.style.backgroundColor= "black";
+        // });
+        // card4.forEach( (el) => {
         //   el.addEventListener("change", () => {
         //     toDoTitleLeftIcon.style.color= "#fff",
         //     toDoTitleLeftIcon.style.backgroundColor= "black"
         //   });
         // });
-        toDoTitleLeftIcon.style.color= "#fff";
-        toDoTitleLeftIcon.style.backgroundColor= "black"
 
         // count4++;
         // card4Count.innerHTML = count4;
@@ -169,47 +162,69 @@ const render = () => {
 };
 render();
 
+const cards = document.querySelectorAll(".cards");
+const toDoList = document.querySelectorAll(".toDoList");
 
-const dragToDos = document.querySelectorAll(".dragToDos");
-// const dropCard = document.querySelectorAll(".cards");
-const innerCard = document.querySelectorAll(".innerCard");
+const card1 = document.getElementById("card1");
+const card2 = document.getElementById("card2");
+const card3 = document.getElementById("card3");
+const card4 = document.getElementById("card4");
+
+const toDo = document.getElementById("toDo");
+const inProgress = document.getElementById("inProgress");
+const stuck = document.getElementById("stuck");
+const done = document.getElementById("done");
 
 let temp;
 
-innerCard.forEach((el) => {
+toDoList.forEach((el) => {
   el.addEventListener("dragstart", (event) => {
     event.dataTransfer.setData("todos", event.target.id);
-    // console.log(event);
-  });
-});
-
-dragToDos.forEach((el) => {
-  el.addEventListener("dragover", (event) => {
-    event.preventDefault();
-  });
-  el.addEventListener("drop", (event) => {
-    temp = event.dataTransfer.getData("todos");
-    const dragged = document.getElementById(temp);
-    el.appendChild(dragged);
-    console.log(temp);
   });
 });
 
 
 
-// const mapDrop = dragToDos.map((el) => {
-//   el.addEventListener("dragover", (event) => {
-//     event.preventDefault();
-//   });
-//   el.addEventListener("drop", (event) => {
-//     temp = event.dataTransfer.getData("dragged");
-//     const dragDrop = document.getElementById(temp);
-//     el.appendChild(dragDrop)
-//   });
-// });
+
+card1.addEventListener("dragover", (event) => {
+  event.preventDefault();
+});
+card1.addEventListener("drop", (event) => {
+  temp = event.dataTransfer.getData("todos");
+  const dragged = document.getElementById(temp);
+  toDo.appendChild(dragged);
+});
+
+
+card2.addEventListener("dragover", (event) => {
+  event.preventDefault();
+});
+card2.addEventListener("drop", (event) => {
+  temp = event.dataTransfer.getData("todos");
+  const dragged = document.getElementById(temp);
+  inProgress.appendChild(dragged);
+});
 
 
 
+card3.addEventListener("dragover", (event) => {
+  event.preventDefault();
+});
+card3.addEventListener("drop", (event) => {
+  temp = event.dataTransfer.getData("todos");
+  const dragged = document.getElementById(temp);
+  stuck.appendChild(dragged);
+});
+
+
+card4.addEventListener("dragover", (event) => {
+  event.preventDefault();
+});
+card4.addEventListener("drop", (event) => {
+  temp = event.dataTransfer.getData("todos");
+  const dragged = document.getElementById(temp);
+  done.appendChild(dragged);
+});
 
 
 // let count1 = 0;
