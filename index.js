@@ -9,7 +9,6 @@ const modalDescription = document.getElementById("modalDescription");
 const addButton = document.getElementById("addButton");
 
 const toDoTitleRight = document.getElementsByClassName("toDoTitleRight")[0];
-// const toDoList = document.getElementsByClassName("toDoList")[0];
 
 Array.prototype.forEach.call(cardAdd, (el) => {
   el.addEventListener("click", () => {
@@ -39,8 +38,11 @@ const setData = (obj) => {
   obj.id = uniq;
   state.push({ ...obj });
   localStorage.setItem("ToDo", JSON.stringify(state));
+  location.reload();
   render();
 };
+
+// addTask
 
 addButton.addEventListener("click", (event) => {
   if (event.target != opacity) {
@@ -53,7 +55,6 @@ addButton.addEventListener("click", (event) => {
   object.priority = prioritySelect.value;
 
   setData(object);
-
   clear();
 });
 
@@ -70,26 +71,21 @@ const clear = () => {
   };
 };
 
-{
-  /* <i style="font-size:24px;" class="fa">&#xf058;</i> */
-}
-{
-  /* <div>${ status && ""} </div> */
-}
-
 const cardComponent = (props) => {
   const { title, description, id, status, priority } = props;
 
-  return `<div id="${id}"  draggable="true" class="${status} toDoList">
+  return `<div id="${id}"  draggable="true" class="toDoList">
   <div class="toDoTitle">
-  <div class="toDoTitleLeft">
-    <div id="toDoTitleLeftIcon">
-      <i class="material-icons"  style="font-size: 14px;">&#xe5ca;</i>
-    </div>
+    <div id="${id}" class="toDoTitleLeft">
+      ${
+        status === "done"
+          ? `<div class= "blackIcon"> <i class="material-icons"  style="font-size: 14px;">&#xe5ca;</i> </div>`
+          : `<div class= "toDoTitleLeftIcon"> <i class="material-icons"  style="font-size: 14px;">&#xe5ca;</i></div>`
+      }
     <div class="toDoTitleText">${title}</div>
   </div>
 
-  <div class="toDoTitleRight">
+  <div class="toDoTitleRight" onclick= "deleteBtn('${id}')">
     <i class="material-icons" style="font-size: 14px;">&#xe5cd;</i>
   </div>
   </div>
@@ -101,7 +97,7 @@ const cardComponent = (props) => {
   </div>
   </div>
 
-  <div class="toDoPriority">${priority}</div>
+  <div class="toDoPriority">${priority}</div> 
   </div>`;
 };
 
@@ -127,7 +123,6 @@ const render = () => {
         break;
       case "inProgress":
         inProgress.innerHTML += result;
-
         break;
 
       case "stuck":
@@ -137,33 +132,16 @@ const render = () => {
       case "done":
         done.innerHTML += result;
 
-        const toDoTitleLeftIcon = document.getElementById("toDoTitleLeftIcon");
-  
-          toDoTitleLeftIcon.style.color= "#fff";
-          toDoTitleLeftIcon.style.backgroundColor= "black"
-
-        // const card4 = document.getElementById("card4");
-        // card4.addEventListener("drop", () => {
-        //   toDoTitleLeftIcon.style.color= "#fff";
-        //   toDoTitleLeftIcon.style.backgroundColor= "black";
-        // });
-        // card4.forEach( (el) => {
-        //   el.addEventListener("change", () => {
-        //     toDoTitleLeftIcon.style.color= "#fff",
-        //     toDoTitleLeftIcon.style.backgroundColor= "black"
-        //   });
-        // });
-
-        // count4++;
-        // card4Count.innerHTML = count4;
         break;
     }
+    // console.log(el.status);
   });
+  // location.reload();
 };
 render();
 
-const cards = document.querySelectorAll(".cards");
-const toDoList = document.querySelectorAll(".toDoList");
+//drag and drop
+
 
 const card1 = document.getElementById("card1");
 const card2 = document.getElementById("card2");
@@ -175,68 +153,162 @@ const inProgress = document.getElementById("inProgress");
 const stuck = document.getElementById("stuck");
 const done = document.getElementById("done");
 
-let temp;
-
+const toDoList = document.querySelectorAll(".toDoList");
 toDoList.forEach((el) => {
   el.addEventListener("dragstart", (event) => {
     event.dataTransfer.setData("todos", event.target.id);
   });
 });
 
+let temp;
 
+const cards = document.querySelectorAll(".cards");
 
+cards.forEach((el) => {
+  el.addEventListener("dragover", (event) => {
+    event.preventDefault();
+  });
+})
 
-card1.addEventListener("dragover", (event) => {
-  event.preventDefault();
-});
 card1.addEventListener("drop", (event) => {
   temp = event.dataTransfer.getData("todos");
   const dragged = document.getElementById(temp);
   toDo.appendChild(dragged);
+
+  const dbData = JSON.parse(localStorage.getItem("ToDo"));
+  const newArray = dbData.map((el) => {
+    if (el.id === temp) {
+      return { ...el, status: "toDo" };
+    } else {
+      return el;
+    }
+  });
+  localStorage.setItem("ToDo", JSON.stringify(newArray));
+  render();
+  counter();
+  location.reload();
 });
 
 
-card2.addEventListener("dragover", (event) => {
-  event.preventDefault();
-});
 card2.addEventListener("drop", (event) => {
   temp = event.dataTransfer.getData("todos");
   const dragged = document.getElementById(temp);
   inProgress.appendChild(dragged);
+
+  const dbData = JSON.parse(localStorage.getItem("ToDo"));
+  const newArray = dbData.map((el) => {
+    if (el.id === temp) {
+      return { ...el, status: "inProgress" };
+    } else {
+      return el;
+    }
+  });
+  localStorage.setItem("ToDo", JSON.stringify(newArray));
+  render();
+  counter();
+  location.reload();
 });
 
-
-
-card3.addEventListener("dragover", (event) => {
-  event.preventDefault();
-});
 card3.addEventListener("drop", (event) => {
   temp = event.dataTransfer.getData("todos");
   const dragged = document.getElementById(temp);
   stuck.appendChild(dragged);
+
+  const dbData = JSON.parse(localStorage.getItem("ToDo"));
+  const newArray = dbData.map((el) => {
+    if (el.id === temp) {
+      return { ...el, status: "stuck" };
+    } else {
+      return el;
+    }
+  });
+
+  localStorage.setItem("ToDo", JSON.stringify(newArray));
+  render();
+  counter();
+  location.reload();
 });
 
 
-card4.addEventListener("dragover", (event) => {
-  event.preventDefault();
-});
 card4.addEventListener("drop", (event) => {
   temp = event.dataTransfer.getData("todos");
   const dragged = document.getElementById(temp);
   done.appendChild(dragged);
+
+  const dbData = JSON.parse(localStorage.getItem("ToDo"));
+  const newArray = dbData.map((el) => {
+    if (el.id === temp) {
+      return { ...el, status: "done" };
+    } else {
+      return el;
+    }
+  });
+
+  localStorage.setItem("ToDo", JSON.stringify(newArray));
+  render();
+  counter();
+  location.reload();
 });
 
+// delete button
 
-// let count1 = 0;
-// let count2 = 0;
-// let count3 = 0;
-// let count4 = 0;
+const deleteBtn = (id) => {
+  const newArr = state.filter((item) => {
+    return item.id !== id;
+  });
 
-// const card1 = document.getElementById("card1");
-// const card2 = document.getElementById("card2");
-// const card3 = document.getElementById("card3");
-// const card4 = document.getElementById("card4");
-// const card1Count = document.getElementById("card1Count");
-// const card2Count = document.getElementById("card2Count");
-// const card3Count = document.getElementById("card3Count");
-// const card4Count = document.getElementById("card4Count");
+  state = localStorage.setItem("ToDo", JSON.stringify(newArr))
+    ? localStorage.setItem("ToDo", JSON.stringify(newArr))
+    : [];
+  location.reload();
+};
+
+// check button click
+
+const checkBtn = document.querySelectorAll(".toDoTitleLeft");
+
+checkBtn.forEach((el) => {
+  el.addEventListener("click", () => {
+    let parentId = el.id;
+    // console.log(parentId);
+    const dataBase = JSON.parse(localStorage.getItem("ToDo"));
+
+    const newArr = dataBase.map((el) => {
+      if (el.id === parentId) {
+        return { ...el, status: "done" };
+      }
+      return el;
+    });
+    localStorage.setItem("ToDo", JSON.stringify(newArr));
+
+    render.call(this);
+    location.reload();
+  });
+  // console.log(el);
+});
+
+//count
+
+
+const counter = () => {
+  const cards = document.querySelectorAll(".cards");
+  cards.forEach((el) => {
+    const task = el.querySelectorAll(".toDoList");
+    const count = el.getElementsByClassName("counter")[0];
+
+    count.innerHTML = task.length;
+  });
+};
+counter();
+
+//edit
+
+const toDoDescriptionIcon = document.querySelectorAll(".toDoDescriptionIcon");
+toDoDescriptionIcon.forEach((el) => {
+  el.addEventListener("click", () => {
+    console.log("hello");
+
+    opacity.style.display = "block";
+
+  });
+});
