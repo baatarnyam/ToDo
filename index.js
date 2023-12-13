@@ -44,18 +44,22 @@ const setData = (obj) => {
 
 // addTask
 
+let edit = false;
+
 addButton.addEventListener("click", (event) => {
   if (event.target != opacity) {
     opacity.style.display = "none";
   }
-
-  object.title = modalTitle.value;
-  object.description = modalDescription.value;
-  object.status = statusSelect.value;
-  object.priority = prioritySelect.value;
-
-  setData(object);
-  clear();
+  if (edit) {
+    editTask();
+  } else {
+    object.title = modalTitle.value;
+    object.description = modalDescription.value;
+    object.status = statusSelect.value;
+    object.priority = prioritySelect.value;
+    setData(object);
+    clear();
+  }
 });
 
 const clear = () => {
@@ -82,7 +86,7 @@ const cardComponent = (props) => {
           ? `<div class= "blackIcon"> <i class="material-icons"  style="font-size: 14px;">&#xe5ca;</i> </div>`
           : `<div class= "toDoTitleLeftIcon"> <i class="material-icons"  style="font-size: 14px;">&#xe5ca;</i></div>`
       }
-    <div class="toDoTitleText">${title}</div>
+    <div class="toDoTitleText" id= "">${title}</div>
   </div>
 
   <div class="toDoTitleRight" onclick= "deleteBtn('${id}')">
@@ -92,7 +96,7 @@ const cardComponent = (props) => {
 
   <div class="toDoDescription">
   <div class="toDoDescirptionText">${description}</div>
-  <div class="toDoDescriptionIcon">
+  <div class="toDoDescriptionIcon" id="edit-${id}">
     <i style="font-size: 13px; font-weight: bold;" class="fa">&#xf044;</i>
   </div>
   </div>
@@ -142,7 +146,6 @@ render();
 
 //drag and drop
 
-
 const card1 = document.getElementById("card1");
 const card2 = document.getElementById("card2");
 const card3 = document.getElementById("card3");
@@ -168,7 +171,7 @@ cards.forEach((el) => {
   el.addEventListener("dragover", (event) => {
     event.preventDefault();
   });
-})
+});
 
 card1.addEventListener("drop", (event) => {
   temp = event.dataTransfer.getData("todos");
@@ -188,7 +191,6 @@ card1.addEventListener("drop", (event) => {
   counter();
   location.reload();
 });
-
 
 card2.addEventListener("drop", (event) => {
   temp = event.dataTransfer.getData("todos");
@@ -228,7 +230,6 @@ card3.addEventListener("drop", (event) => {
   counter();
   location.reload();
 });
-
 
 card4.addEventListener("drop", (event) => {
   temp = event.dataTransfer.getData("todos");
@@ -289,7 +290,6 @@ checkBtn.forEach((el) => {
 
 //count
 
-
 const counter = () => {
   const cards = document.querySelectorAll(".cards");
   cards.forEach((el) => {
@@ -303,12 +303,54 @@ counter();
 
 //edit
 
+const title = document.getElementById("modalTitle");
+const description = document.getElementById("modalDescription");
+const modalStatus = document.getElementById("statusSelect");
+const priority = document.getElementById("prioritySelect");
+
+const modalTask = document.getElementsByClassName("modalTask ")[0];
+
 const toDoDescriptionIcon = document.querySelectorAll(".toDoDescriptionIcon");
+
+let editTaskID = "";
+
 toDoDescriptionIcon.forEach((el) => {
-  el.addEventListener("click", () => {
-    console.log("hello");
+  el.addEventListener("click", (event) => {
+    addButton.innerHTML = "SAVE";
+    modalTask.innerHTML = "Edit task";
 
     opacity.style.display = "block";
+    edit = true;
 
+    const db = JSON.parse(localStorage.getItem("ToDo"));
+
+    const ID = el.id.split("-")[1];
+
+    editTaskID = ID;
+
+    const task = db.find(({ id }) => id == ID);
+
+    title.value = task.title;
+    description.value = task.description;
+    modalStatus.value = task.status;
+    priority.value = task.priority;
   });
 });
+
+function editTask() {
+  const db = JSON.parse(localStorage.getItem("ToDo"));
+  const task = db.find(({ id }) => id == editTaskID);
+  const filter = db.filter(({ id }) => id != editTaskID);v 
+
+  task.title = title.value;
+  task.description = description.value;
+  task.status = modalStatus.value;
+  task.priority = priority.value;
+
+  edit = false;
+  console.log(task);
+  localStorage.setItem("ToDo", JSON.stringify([...filter, task]));
+  opacity.style.display = "none";
+  render();
+  location.reload();
+}
