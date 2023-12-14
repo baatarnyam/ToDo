@@ -340,7 +340,7 @@ toDoDescriptionIcon.forEach((el) => {
 function editTask() {
   const db = JSON.parse(localStorage.getItem("ToDo"));
   const task = db.find(({ id }) => id == editTaskID);
-  const filter = db.filter(({ id }) => id != editTaskID);v 
+  const filter = db.filter(({ id }) => id != editTaskID);
 
   task.title = title.value;
   task.description = description.value;
@@ -354,3 +354,21 @@ function editTask() {
   render();
   location.reload();
 }
+
+// const sort = [ 100, 10 ,4, 133, 253, 1 ];
+
+// sort.sort( function(a, b){ return a - b});
+// console.log(sort);
+
+// const dragToDoss = document.querySelectorAll(".dragToDos");
+
+// dragToDoss.forEach((element) => {
+//   const priorities = ["High", "Medium", "Low"];
+//   const data = JSON.parse(localStorage.getItem("ToDo"));
+//   data.sort((a, b) => {
+//     const x = priorities.indexOf(a.priority);
+//     const y = priorities.indexOf(b.priority);
+//     return x - y;
+//   });
+//   localStorage.setItem("ToDo", JSON.stringify(data));
+// });

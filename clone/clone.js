@@ -9,10 +9,15 @@ Array.prototype.forEach.call(addButton, (el) => {
         opacity.style.display= "block";
     })
 });
+opacity.addEventListener( "click", (event) => {
+    if (event.target == opacity) {
+        opacity.style.display= "none";
+    }
+});
 
 
-addButton.addEventListener("click", (event) => {
+taskButton.addEventListener("click", (event) => {
     if (event.target != opacity){
         opacity.style.display= "none";
     }
-})
+});

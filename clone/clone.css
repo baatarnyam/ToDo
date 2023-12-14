@@ -32,6 +32,9 @@
     flex-direction: column;
     justify-content: space-between;
 }
+#cardTop {
+    margin-bottom: 20px;
+}
 
 .cardText {
     font-size: 22px;
@@ -54,6 +57,7 @@
     height: 35px;
     display: flex;
     align-items: center;
+    margin-top: 20px;
 }
 .addButton:hover {
     background-color: rgb(170, 170, 170);
@@ -61,8 +65,8 @@
 }
 
 .modal {
-    width: 300px;
-    height: 400px;
+    width: 320px;
+    height: 450px;
     background-color: rgb(236, 235, 235);
     border-radius: 5px;
     position: absolute;
@@ -88,6 +92,13 @@
     font-weight: bold;
     font-size: 26px;
 }
+#inputText {
+    width: 100%;
+    height: 30px;
+}
+#textArea {
+    width: 100%;
+}
 #taskButton {
     width: 100%;
     height: 30px;
@@ -98,4 +109,41 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+#prioritySelect {
+    width: 100%;
+    height: 30px;
+}
+#statusSelect {
+    width: 100%;
+    height: 30px;
+}
+
+.toDoList {
+    width: 100%;
+    height: 120px;
+    border: solid 1px grey;
+    background-color: grey;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 10px 10px 10px;
+}
+
+#todoListTop {
+    width: 100%;
+    height: 25px;
+    border: solid 1px red;
+}
+#todoDescription {
+    width: 100%;
+    height: 25px;
+    border: solid 1px red;
+}
+#todoPriority {
+    width: 100%;
+    height: 25px;
+    border: solid 1px red;
 }

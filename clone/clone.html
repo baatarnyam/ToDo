@@ -11,10 +11,22 @@
 
         <div class="layout">
             <div class="card">
-                <div>
+                <div id="cardTop">
                     <span class="cardText">To Do</span>
                     <span class="cardCount">0</span>
                 </div>
+
+                <div id="toDo">
+                    <div class="todoList">
+                        <div id="todoListTop"></div>
+                        <div id="todoDescription"></div>
+                        <div id="todoPriority"></div>
+                        <div></div>
+                    </div>
+                </div>
+
+
+
                 <div class="addText addButton">
                     <span>+</span>
                     <span>Add card</span>
@@ -61,27 +73,33 @@
 
                 <div>
                     <div>Title</div>
-                    <input type="text">
+                    <input type="text" id="inputText">
                 </div>
 
                 <div>
                     <div>Description</div>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <textarea name="" id="textArea" cols="30" rows="10"></textarea>
                 </div>
                 <div>
-                    <select name="" id="">
+                    <select name="" id="statusSelect">
                         <option value="">To Do</option>
+                        <option value="">In progress</option>
+                        <option value="">Stuck</option>
                     </select>
                 </div>
 
                 <div>
-                    <select name="" id="">
-                        <option value="">High</option>
+                    <select name="" id="prioritySelect">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
                     </select>
                 </div>
 
                 <div id="taskButton">Add Task</div>
             </div>
+
+
         </div>
     </div>
     
